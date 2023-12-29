@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TcModuleClass xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2009/05/TcModuleClass">
+  <Vendor>
+    <Name>C++ Module Vendor</Name>
+  </Vendor>
+  <DataTypes ></DataTypes>
+  <Groups>
+    <Group SortOrder="701">
+      <Name>C++</Name>
+      <DisplayName>C++ Modules</DisplayName>
+    </Group>
+  </Groups>
+  <Modules>
+    <Module GUID="{9f249c9f-6311-48c5-ad56-73d38f110bf0}" Group="C++">
+      <Name>Timecode_Receiver</Name>
+      <CLSID ClassFactory="SMPTE_Timecode">{c01a0628-c903-3e25-20a5-93619fa837ac}</CLSID>
+      <Licenses>
+        <License>
+          <LicenseId>{304D006A-8299-4560-AB79-438534B50288}</LicenseId>
+          <Comment>TC3 C++</Comment>
+        </License>
+      </Licenses>
+      <InitSequence>PSO</InitSequence>
+      <Contexts>
+        <Context>
+          <Id>1</Id>
+        </Context>
+      </Contexts>
+      <Interfaces>
+        <Interface DisableCodeGeneration="true">
+          <Type GUID="{00000012-0000-0000-E000-000000000064}">ITComObject</Type>
+        </Interface>
+        <Interface>
+          <Type GUID="{d28a8cd2-5477-4b75-af0f-998841af9e44}">ITComOnlineChange</Type>
+        </Interface>
+        <Interface>
+          <Type GUID="{03000010-0000-0000-E000-000000000064}">ITcCyclic</Type>
+        </Interface>
+      </Interfaces>
+      <Parameters>
+        <Group Collapsed="true">TmcModuleHandler</Group>
+        <Parameter Group="TmcModuleHandler" HideParameter="true" DisableCodeGeneration="true">
+          <Name>DataAreas</Name>
+          <BaseType GUID="{C636B456-B483-42A5-BD8A-58753433F375}" Namespace="IO">TcIoDataAreaSize</BaseType>
+          <ArrayInfo>
+            <LBound>0</LBound>
+            <Elements Min="0" MaxUnbounded="true">1</Elements>
+          </ArrayInfo>
+          <PTCID>#x0300002A</PTCID>
+        </Parameter>
+        <Parameter Group="TmcModuleHandler" HideParameter="true" DisableCodeGeneration="true">
+          <Name>Contexts</Name>
+          <BaseType GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</BaseType>
+          <ArrayInfo>
+            <LBound>0</LBound>
+            <Elements Min="0" MaxUnbounded="true">1</Elements>
+          </ArrayInfo>
+          <PTCID>#x03002201</PTCID>
+        </Parameter>
+        <Parameter Group="TmcModuleHandler" HideParameter="true" DisableCodeGeneration="true">
+          <Name>SortOrders</Name>
+          <BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
+          <ArrayInfo>
+            <LBound>0</LBound>
+            <Elements Min="0" MaxUnbounded="true">1</Elements>
+          </ArrayInfo>
+          <PTCID>#x03002204</PTCID>
+        </Parameter>
+        <Parameter Group="TmcModuleHandler" HideParameter="true" DisableCodeGeneration="true">
+          <Name>LibraryId</Name>
+          <BaseType>STRING(127)</BaseType>
+          <Default>
+            <String>C++ Module Vendor|SMPTE_Timecode|1.0.0.1</String>
+          </Default>
+          <PTCID>#x03002119</PTCID>
+        </Parameter>
+        <Parameter Group="TmcModuleHandler" HideParameter="true" DisableCodeGeneration="true">
+          <Name>ModuleClsId</Name>
+          <BaseType GUID="{18071995-0000-0000-0000-000000000021}">GUID</BaseType>
+          <Default>
+            <GUID>{9f249c9f-6311-48c5-ad56-73d38f110bf0}</GUID>
+          </Default>
+          <PTCID>#x0300211A</PTCID>
+        </Parameter>
+        <Parameter>
+          <Name>TraceLevelMax</Name>
+          <Comment>Controls the amount of log messages.</Comment>
+          <BaseType GUID="{8007ae3b-86bb-40f2-b385-ef87fcc239a4}">TcTraceLevel</BaseType><Default><EnumText>tlError</EnumText></Default><Properties></Properties>
+          <PTCID>#x03002103</PTCID>
+          <ContextId>1</ContextId>
+        </Parameter>
+      </Parameters>
+      <DataAreas>
+        <DataArea>
+          <AreaNo AreaType="InputDst">0</AreaNo>
+          <Name>Inputs</Name>
+          <ContextId>1</ContextId><Symbol><Name>EL3702 Sample</Name><Comment TxtId=""><![CDATA[Signals from the EL3702 for SMPTE Input. Oversampling should be 100, and cycle time at 1ms.]]></Comment><BaseType GUID="{18071995-0000-0000-0000-000000000006}">INT</BaseType><ArrayInfo><LBound>0</LBound><Elements>100</Elements></ArrayInfo></Symbol><Symbol><Name>Reset Frame Count</Name><Comment TxtId=""><![CDATA[Resets the total number frame counter on a rising edge]]></Comment><BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType></Symbol>
+        </DataArea>
+        <DataArea>
+          <AreaNo AreaType="OutputSrc">1</AreaNo>
+          <Name>Outputs</Name>
+          <ContextId>1</ContextId><Symbol><Name>Frame Rate</Name><Comment TxtId=""><![CDATA[Estimated frame rate from the EL3702 signals]]></Comment><BaseType GUID="{18071995-0000-0000-0000-00000000000d}">REAL</BaseType><Unit><![CDATA[fps]]></Unit></Symbol><Symbol><Name>Frames Units</Name><BaseType GUID="{18071995-0000-0000-0000-000000000006}">INT</BaseType></Symbol><Symbol><Name>Frames Tens</Name><BaseType GUID="{18071995-0000-0000-0000-000000000006}">INT</BaseType></Symbol><Symbol><Name>Frames</Name><BaseType GUID="{18071995-0000-0000-0000-000000000006}">INT</BaseType></Symbol><Symbol><Name>Seconds Units</Name><DisplayName TxtId=""><![CDATA[Seconds Tens]]></DisplayName><BaseType GUID="{18071995-0000-0000-0000-000000000006}">INT</BaseType></Symbol><Symbol><Name>Seconds Tens</Name><DisplayName TxtId=""><![CDATA[Seconds Tens]]></DisplayName><BaseType GUID="{18071995-0000-0000-0000-000000000006}">INT</BaseType></Symbol><Symbol><Name>Seconds</Name><BaseType GUID="{18071995-0000-0000-0000-000000000006}">INT</BaseType></Symbol><Symbol><Name>Minutes Units</Name><DisplayName TxtId=""><![CDATA[Minutes Tens]]></DisplayName><BaseType GUID="{18071995-0000-0000-0000-000000000006}">INT</BaseType></Symbol><Symbol><Name>Minutes Tens</Name><DisplayName TxtId=""><![CDATA[Seconds Tens]]></DisplayName><BaseType GUID="{18071995-0000-0000-0000-000000000006}">INT</BaseType></Symbol><Symbol><Name>Minutes</Name><BaseType GUID="{18071995-0000-0000-0000-000000000006}">INT</BaseType></Symbol><Symbol><Name>Hours Units</Name><BaseType GUID="{18071995-0000-0000-0000-000000000006}">INT</BaseType></Symbol><Symbol><Name>Hours Tens</Name><BaseType GUID="{18071995-0000-0000-0000-000000000006}">INT</BaseType></Symbol><Symbol><Name>Hours</Name><BaseType GUID="{18071995-0000-0000-0000-000000000006}">INT</BaseType></Symbol><Symbol><Name>Time String</Name><BaseType GUID="{18071995-0000-0000-0000-000100000100}">STRING(256)</BaseType></Symbol><Symbol><Name>Frame Count</Name><Comment TxtId=""><![CDATA[Total count of frames received]]></Comment><BaseType GUID="{18071995-0000-0000-0000-000000000007}">DWORD</BaseType></Symbol><Symbol><Name>Index Tab EL3702 Error</Name><Comment TxtId=""><![CDATA[Increased when an edge had not beed detected in the last cycle]]></Comment><BaseType GUID="{18071995-0000-0000-0000-000000000004}">WORD</BaseType></Symbol><Symbol><Name>Index Tab Timecode Frame Error</Name><Comment TxtId=""><![CDATA[Increased when we are not able to catch a SyncWord in the big Array of TimeCode Bits. Normally, an Syncword each 80 bits]]></Comment><BaseType GUID="{18071995-0000-0000-0000-000000000004}">WORD</BaseType></Symbol><Symbol><Name>Frame Error</Name><BaseType GUID="{18071995-0000-0000-0000-000000000007}">DWORD</BaseType></Symbol><Symbol><Name>Timecode Receiver Status</Name><Comment TxtId=""><![CDATA[0x0 = No Error
+0x1 = Mismatch in cycle time, please set to 1ms
+0x2 = Receiving
+0x9 = Error on SMPTE signal]]></Comment><BaseType GUID="{18071995-0000-0000-0000-000000000019}">HRESULT</BaseType></Symbol>
+        </DataArea>
+      </DataAreas>
+      <InterfacePointers />
+      <DataPointers />
+      <Deployment />
+    </Module>
+  </Modules>
+  <Library>
+    <Name>SMPTE_Timecode</Name>
+    <Version>0.0.0.1</Version>
+  </Library>
+</TcModuleClass>

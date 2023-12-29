@@ -1,0 +1,10 @@
+; SMPTE_TIMECODEW32.def : Declares the module parameters.
+
+LIBRARY      "SMPTE_TimecodeW32.DLL"
+
+EXPORTS
+	DllCanUnloadNow      PRIVATE
+	DllGetClassObject    PRIVATE
+	DllRegisterServer    PRIVATE
+	DllUnregisterServer	 PRIVATE
+	DllGetTcCtrl		 PRIVATE
